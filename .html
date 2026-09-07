@@ -1,0 +1,1151 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Siddharth | Reserve</title>
+
+    <style>
+
+        /* =====================================================
+           BASIC RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #050505;
+            color: white;
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           MAIN BOOK
+        ===================================================== */
+
+        .book {
+            position: relative;
+
+            width: 100vw;
+            height: 100vh;
+
+            perspective: 1800px;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           COMMON PAGE
+        ===================================================== */
+
+        .page {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            flex-direction: column;
+
+            text-align: center;
+
+            padding: 30px;
+
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+
+            transition:
+                transform 1.15s cubic-bezier(.65, .05, .36, 1),
+                opacity 0.8s ease;
+        }
+
+
+        /* =====================================================
+           PAGE 1 - LOGIN
+        ===================================================== */
+
+        #loginPage {
+            background:
+                radial-gradient(
+                    circle at top,
+                    #182942 0%,
+                    #0a0a0a 48%,
+                    #050505 100%
+                );
+
+            z-index: 100;
+
+            transform: rotateY(0deg);
+            opacity: 1;
+
+            transform-origin: left center;
+        }
+
+
+        /* =====================================================
+           LOGIN BOX
+        ===================================================== */
+
+        .login-box {
+            width: 390px;
+            max-width: 92%;
+
+            padding: 38px 34px;
+
+            background: #101010;
+
+            border: 1px solid #292929;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.8);
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           SIDDHARTH
+        ===================================================== */
+
+        .logo {
+            color: #123c91;
+
+            font-size: 44px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================================
+           INPUT GROUP
+        ===================================================== */
+
+        .input-group {
+            text-align: left;
+
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+
+            color: white;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+
+        /* =====================================================
+           INPUT WRAPPER
+        ===================================================== */
+
+        .input-wrapper {
+            position: relative;
+
+            width: 100%;
+        }
+
+
+        /* =====================================================
+           INPUT
+        ===================================================== */
+
+        .input-wrapper input {
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 50px 0 15px;
+
+            border: 1px solid #383838;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: #181818;
+
+            color: white;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #777;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #123c91;
+
+            box-shadow:
+                0 0 0 2px rgba(18, 60, 145, 0.15);
+        }
+
+
+        /* =====================================================
+           PASSWORD VIEW
+        ===================================================== */
+
+        .eye-btn {
+            position: absolute;
+
+            right: 8px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 38px;
+            height: 38px;
+
+            border: none;
+
+            background: transparent;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            border-radius: 7px;
+        }
+
+        .eye-btn:hover {
+            background: #242424;
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
+
+        .login-btn {
+            width: 100%;
+
+            height: 50px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #e00000;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .login-btn:hover {
+            background: #ff1717;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 28px rgba(224, 0, 0, 0.28);
+        }
+
+        .login-btn:active {
+            transform: scale(0.98);
+        }
+
+
+        /* =====================================================
+           RESET PASSWORD
+        ===================================================== */
+
+        .reset-password {
+            display: inline-block;
+
+            margin-top: 18px;
+
+            color: white;
+
+            font-size: 14px;
+
+            text-decoration: none;
+
+            cursor: pointer;
+        }
+
+        .reset-password:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 14px;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           WELCOME PAGES
+        ===================================================== */
+
+        .welcome-page {
+            background:
+                radial-gradient(
+                    circle at center,
+                    #101d31 0%,
+                    #070707 55%,
+                    #050505 100%
+                );
+
+            z-index: 40;
+
+            transform: rotateY(180deg);
+
+            opacity: 0;
+
+            transform-origin: right center;
+        }
+
+
+        /* =====================================================
+           WELCOME TEXT
+        ===================================================== */
+
+        .welcome-text {
+            color: white;
+
+            font-size: 48px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 12px;
+
+            text-shadow:
+                0 0 20px rgba(255, 255, 255, 0.08);
+        }
+
+
+        .collection-text {
+            color: #bcbcbc;
+
+            font-size: 18px;
+
+            line-height: 1.5;
+
+            margin-bottom: 32px;
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .main-btn {
+            min-width: 160px;
+
+            padding: 14px 38px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #123c91;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                background 0.25s,
+                transform 0.25s,
+                box-shadow 0.25s;
+        }
+
+        .main-btn:hover {
+            background: #1850bd;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 28px rgba(18, 60, 145, 0.30);
+        }
+
+        .main-btn:active {
+            transform: scale(0.98);
+        }
+
+
+        /* =====================================================
+           CONTACT PAGES
+        ===================================================== */
+
+        .contact-page {
+            background:
+                radial-gradient(
+                    circle at center,
+                    #101010 0%,
+                    #050505 70%
+                );
+
+            z-index: 30;
+
+            transform: rotateY(180deg);
+
+            opacity: 0;
+
+            transform-origin: right center;
+        }
+
+
+        /* =====================================================
+           CONTACT TITLE
+        ===================================================== */
+
+        .page-title {
+            color: white;
+
+            font-size: 42px;
+
+            font-weight: 700;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =====================================================
+           CONTACT LIST
+        ===================================================== */
+
+        .contact-list {
+            width: min(600px, 90vw);
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+            margin-bottom: 28px;
+
+            max-height: 55vh;
+
+            overflow-y: auto;
+        }
+
+
+        .contact-item {
+            width: 100%;
+
+            padding: 17px 20px;
+
+            background: #101010;
+
+            border: 1px solid #292929;
+
+            border-radius: 10px;
+
+            color: white;
+
+            font-size: 20px;
+
+            letter-spacing: 2px;
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           RISHABH FLOW
+        ===================================================== */
+
+        .book.rishabh-login #loginPage {
+            transform: rotateY(-180deg);
+            opacity: 0;
+        }
+
+        .book.rishabh-login #rishabhWelcome {
+            transform: rotateY(0deg);
+            opacity: 1;
+            z-index: 200;
+        }
+
+        .book.rishabh-contact #rishabhWelcome {
+            transform: rotateY(-180deg);
+            opacity: 0;
+        }
+
+        .book.rishabh-contact #rishabhContact {
+            transform: rotateY(0deg);
+            opacity: 1;
+            z-index: 300;
+        }
+
+
+        /* =====================================================
+           UMAR FLOW
+        ===================================================== */
+
+        .book.umar-login #loginPage {
+            transform: rotateY(-180deg);
+            opacity: 0;
+        }
+
+        .book.umar-login #umarWelcome {
+            transform: rotateY(0deg);
+            opacity: 1;
+            z-index: 200;
+        }
+
+        .book.umar-contact #umarWelcome {
+            transform: rotateY(-180deg);
+            opacity: 0;
+        }
+
+        .book.umar-contact #umarContact {
+            transform: rotateY(0deg);
+            opacity: 1;
+            z-index: 300;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .login-box {
+                width: 92%;
+                padding: 30px 20px;
+            }
+
+            .logo {
+                font-size: 36px;
+            }
+
+            .welcome-text {
+                font-size: 34px;
+            }
+
+            .collection-text {
+                font-size: 16px;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+
+            .contact-item {
+                font-size: 17px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MAIN BOOK
+    ===================================================== -->
+
+    <div class="book" id="book">
+
+
+        <!-- =================================================
+             PAGE 1 - LOGIN
+        ================================================= -->
+
+        <section class="page" id="loginPage">
+
+            <div class="login-box">
+
+                <div class="logo">
+                    Siddharth
+                </div>
+
+
+                <!-- USERNAME -->
+
+                <div class="input-group">
+
+                    <label for="username">
+                        User
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter username"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter password"
+                        >
+
+                        <button
+                            type="button"
+                            class="eye-btn"
+                            id="eyeButton"
+                            onclick="togglePassword()"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="button"
+                    class="login-btn"
+                    onclick="login()"
+                >
+                    Login
+                </button>
+
+
+                <!-- RESET -->
+
+                <a
+                    href="#"
+                    class="reset-password"
+                    onclick="resetPassword(event)"
+                >
+                    Reset password
+                </a>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    class="message"
+                    id="message"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE 2 - RISHABH WELCOME
+        ================================================== -->
+
+        <section
+            class="page welcome-page"
+            id="rishabhWelcome"
+        >
+
+            <h1 class="welcome-text">
+                Welcome Rishabh
+            </h1>
+
+            <p class="collection-text">
+                Continue to explore your collection
+            </p>
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="openRishabhCollection()"
+            >
+                Collection
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE 3 - RISHABH CONTACT
+        ================================================== -->
+
+        <section
+            class="page contact-page"
+            id="rishabhContact"
+        >
+
+            <h1 class="page-title">
+                Rishabh Contact
+            </h1>
+
+
+            <div class="contact-list">
+
+                <div class="contact-item">
+                    7277830667
+                </div>
+
+                <div class="contact-item">
+                    7493085482
+                </div>
+
+                <div class="contact-item">
+                    9576989906
+                </div>
+
+                <div class="contact-item">
+                    746644366
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="goBackToLogin()"
+            >
+                Back
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE 4 - UMAR WELCOME
+        ================================================== -->
+
+        <section
+            class="page welcome-page"
+            id="umarWelcome"
+        >
+
+            <h1 class="welcome-text">
+                Welcome Umar
+            </h1>
+
+            <p class="collection-text">
+                Continue to explore your collection
+            </p>
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="openUmarCollection()"
+            >
+                Collection
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE 5 - UMAR CONTACT
+        ================================================== -->
+
+        <section
+            class="page contact-page"
+            id="umarContact"
+        >
+
+            <h1 class="page-title">
+                Umar Contact
+            </h1>
+
+
+            <!-- ONLY UMAR NUMBER -->
+
+            <div class="contact-list">
+
+                <div class="contact-item">
+                    9204721247
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="goBackToLogin()"
+            >
+                Back
+            </button>
+
+        </section>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           LOGIN USERS
+        ===================================================== */
+
+        const users = [
+
+            {
+                username: "RISHAB RANJAN",
+                password: "RISHABH123",
+                type: "rishabh"
+            },
+
+            {
+                username: "Umar",
+                password: "Khan N",
+                type: "umar"
+            }
+
+        ];
+
+
+        /* =====================================================
+           LOGIN FUNCTION
+        ===================================================== */
+
+        function login() {
+
+            const username =
+                document
+                    .getElementById("username")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+            const message =
+                document
+                    .getElementById("message");
+
+            const book =
+                document
+                    .getElementById("book");
+
+
+            /* FIND MATCHING USER */
+
+            const user =
+                users.find(function(item) {
+
+                    return (
+                        item.username === username &&
+                        item.password === password
+                    );
+
+                });
+
+
+            /* SUCCESS */
+
+            if (user) {
+
+                message.textContent = "";
+
+
+                /* RISHABH */
+
+                if (user.type === "rishabh") {
+
+                    book.classList.add(
+                        "rishabh-login"
+                    );
+
+                }
+
+
+                /* UMAR */
+
+                if (user.type === "umar") {
+
+                    book.classList.add(
+                        "umar-login"
+                    );
+
+                }
+
+            }
+
+
+            /* FAILED */
+
+            else {
+
+                message.textContent =
+                    "Incorrect username or password.";
+
+                message.style.color =
+                    "#ff4d4d";
+            }
+
+        }
+
+
+        /* =====================================================
+           PASSWORD SHOW / HIDE
+        ===================================================== */
+
+        function togglePassword() {
+
+            const password =
+                document
+                    .getElementById("password");
+
+            const eyeButton =
+                document
+                    .getElementById("eyeButton");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                eyeButton.textContent = "🙈";
+
+            }
+
+            else {
+
+                password.type = "password";
+
+                eyeButton.textContent = "👁";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RESET PASSWORD
+        ===================================================== */
+
+        function resetPassword(event) {
+
+            event.preventDefault();
+
+            const message =
+                document
+                    .getElementById("message");
+
+            message.textContent =
+                "Password reset is not connected.";
+
+            message.style.color =
+                "#ffffff";
+
+        }
+
+
+        /* =====================================================
+           RISHABH COLLECTION
+        ===================================================== */
+
+        function openRishabhCollection() {
+
+            const book =
+                document
+                    .getElementById("book");
+
+            book.classList.add(
+                "rishabh-contact"
+            );
+
+        }
+
+
+        /* =====================================================
+           UMAR COLLECTION
+        ===================================================== */
+
+        function openUmarCollection() {
+
+            const book =
+                document
+                    .getElementById("book");
+
+            book.classList.add(
+                "umar-contact"
+            );
+
+        }
+
+
+        /* =====================================================
+           BACK TO LOGIN
+        ===================================================== */
+
+        function goBackToLogin() {
+
+            const book =
+                document
+                    .getElementById("book");
+
+
+            /* Remove all page states */
+
+            book.classList.remove(
+                "rishabh-login"
+            );
+
+            book.classList.remove(
+                "rishabh-contact"
+            );
+
+            book.classList.remove(
+                "umar-login"
+            );
+
+            book.classList.remove(
+                "umar-contact"
+            );
+
+
+            /* Clear username */
+
+            document
+                .getElementById("username")
+                .value = "";
+
+
+            /* Clear password */
+
+            document
+                .getElementById("password")
+                .value = "";
+
+
+            /* Clear message */
+
+            document
+                .getElementById("message")
+                .textContent = "";
+
+
+            /* Reset password viewer */
+
+            document
+                .getElementById("password")
+                .type = "password";
+
+            document
+                .getElementById("eyeButton")
+                .textContent = "👁";
+
+        }
+
+
+        /* =====================================================
+           ENTER KEY
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    const book =
+                        document
+                            .getElementById("book");
+
+
+                    if (
+                        !book.classList.contains(
+                            "rishabh-login"
+                        ) &&
+                        !book.classList.contains(
+                            "umar-login"
+                        )
+                    ) {
+
+                        login();
+
+                    }
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
